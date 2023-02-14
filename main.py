@@ -34,12 +34,34 @@ def cargarArchivo(lista):
             nombres.append(tmp_nombre)
 
 
+def gestionarPeliculas():
+    print("""===========GESTION PELICULAS========
+        a. Mostrar Peliculas 
+        b. Mostrar actores
+        c. Regresar al menu principal
+        ======================================""")
+    while True:
+        try:
+            option = input("Ingrese una opcion: ")
+            if option == "a":
+                for i in ListaPeliculas:
+                    i.mostrar_infopeli()
+                gestionarPeliculas()
+                break
+            elif option == "b":
+                print('adios')
+                break
+            elif option == "c":
+                menuPrincipal()
+                break
+            else:
+                print("Opcion incorrecta")
+        except ValueError:
+            print("Opcion incorrecta")
+    exit
+
+
 def menuPrincipal():
-    print("""============= LENGUAJES FORMALES DE PROGRAMACION B- =================
-                        201212891
-                    Edgar Rolando Ramirez Lopez
-    ======================================================================""")
-    input('      Presione cualquier tecla para continuar...       ')
     print("""===========MENU PRINCIPAL=============
         1.- Cargar Archivo de entrada
         2.- Gestionar peliculas
@@ -54,13 +76,11 @@ def menuPrincipal():
                 print('========Carga de Archivo========')
                 cargarArchivo(ListaPeliculas)
                 print("CARGO EXITOSAMENTE\n")
-                for i in ListaPeliculas:
-                    i.mostrar_infopeli()
-                input()
-
+                input('Presione enter para continuar...')
+                menuPrincipal()
                 break
             elif option == 2:
-                print('op2')
+                gestionarPeliculas()
                 break
             elif option == 3:
                 print('op3')
@@ -78,4 +98,9 @@ def menuPrincipal():
     exit
 
 
+print("""============= LENGUAJES FORMALES DE PROGRAMACION B- =================
+                        201212891
+                    Edgar Rolando Ramirez Lopez
+    ======================================================================""")
+input('      Presione cualquier tecla para continuar...       ')
 menuPrincipal()
