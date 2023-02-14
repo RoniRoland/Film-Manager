@@ -4,6 +4,7 @@ ListaPeliculas = []
 
 
 def cargarArchivo(lista):
+    nombres = []
     ruta = input("Escriba la ruta del archivo a leer: ")
     archivo = open(ruta, 'r')
     lineas = archivo.readlines()
@@ -27,8 +28,10 @@ def cargarArchivo(lista):
                 tmp_genero = j
             count += 1
 
-        peli = peliculas(tmp_nombre, tmp_actores, tmp_anio, tmp_genero)
-        lista.append(peli)
+        if tmp_nombre not in nombres:
+            peli = peliculas(tmp_nombre, tmp_actores, tmp_anio, tmp_genero)
+            lista.append(peli)
+            nombres.append(tmp_nombre)
 
 
 def menuPrincipal():
@@ -54,6 +57,7 @@ def menuPrincipal():
                 for i in ListaPeliculas:
                     i.mostrar_infopeli()
                 input()
+
                 break
             elif option == 2:
                 print('op2')
