@@ -34,6 +34,18 @@ def cargarArchivo(lista):
             nombres.append(tmp_nombre)
 
 
+def mostrarNombres(registro_peliculas):
+    num_pelis = 0
+    for pelicula in registro_peliculas:
+        num_pelis += 1
+        print(num_pelis, ".", pelicula.nombre)
+    opcion_peli = int(
+        input('Ingrese el numero de la pelicula donde desea ver los actores: ')) - 1
+
+    actor = registro_peliculas[opcion_peli].actores
+    print('Los actores de la película seleccionada son: %s' % ','.join(actor))
+
+
 def gestionarPeliculas():
     print("""===========GESTION PELICULAS========
         a. Mostrar Peliculas 
@@ -49,7 +61,7 @@ def gestionarPeliculas():
                 gestionarPeliculas()
                 break
             elif option == "b":
-                print('adios')
+                mostrarNombres(ListaPeliculas)
                 break
             elif option == "c":
                 menuPrincipal()
