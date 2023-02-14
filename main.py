@@ -1,3 +1,34 @@
+from Peliculas import *
+
+ListaPeliculas = []
+
+
+def cargarArchivo(lista):
+    ruta = input("Escriba la ruta del archivo a leer: ")
+    archivo = open(ruta, 'r')
+    lineas = archivo.readlines()
+
+    for i in lineas:
+        i = i.split(";")
+        count = 1
+        tmp_nombre = None
+        tmp_actores = None
+        tmp_anio = None
+        tmp_genero = None
+        for j in i:
+            if count == 1:
+                tmp_nombre = j
+            elif count == 2:
+                j = j.split(",")
+                tmp_actores = j
+            elif count == 3:
+                tmp_anio = j
+            elif count == 4:
+                tmp_genero = j
+            count += 1
+
+        peli = peliculas(tmp_nombre, tmp_actores, tmp_anio, tmp_genero)
+        lista.append(peli)
 
 
 def menuPrincipal():
@@ -17,7 +48,12 @@ def menuPrincipal():
         try:
             option = int(input("Ingrese una opcion: "))
             if option == 1:
-                print('op1')
+                print('========Carga de Archivo========')
+                cargarArchivo(ListaPeliculas)
+                print("CARGO EXITOSAMENTE\n")
+                for i in ListaPeliculas:
+                    i.mostrar_infopeli()
+                input()
                 break
             elif option == 2:
                 print('op2')
