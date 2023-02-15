@@ -108,6 +108,19 @@ def buscar_anio(lista_peliculas, anio):
             print("-", pelicula)
 
 
+def buscar_genero(lista_peliculas, genero):
+    peliculas_con_genero = []
+    for pelicula in lista_peliculas:
+        if genero.upper() in pelicula.genero.upper():
+            peliculas_con_genero.append(pelicula.nombre)
+    if len(peliculas_con_genero) == 0:
+        print("El genero", genero, "no se encuentra en ninguna pelicula.")
+    else:
+        print("El genero", genero, "aparece en las siguientes peliculas:")
+        for pelicula in peliculas_con_genero:
+            print("-", pelicula)
+
+
 def filtrado():
     print("""===========FILTRADO========
         a. Filtrado por actor
@@ -128,7 +141,9 @@ def filtrado():
                 filtrado()
                 break
             elif option == "c":
-
+                opcGenero = input("Ingrese el genero de la pelicula: ")
+                buscar_genero(ListaPeliculas, opcGenero)
+                filtrado()
                 break
             else:
                 print("Opcion incorrecta")
