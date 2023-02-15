@@ -1,32 +1,39 @@
 from Peliculas import *
-
+import os
 ListaPeliculas = []
+
+
+def elegirArchivo():
+    # Leemos la ruta/nombre del archivo a leer por consola
+    archivo = str(input("Introduzca el nombre/ruta del archivo a leer: "))
+    while not os.path.isfile(archivo):  # Comprobamos que el archivo existe
+        print("\nERROR: No se encontró el archivo\n")
+        # Volvemos a leer la ruta/nombre del archivo
+        archivo = str(input("Introduzca el nombre/ruta del archivo a leer: "))
+    else:
+        return archivo  # Si el archivo existe, devuelve la ruta/nombre
 
 
 def cargarArchivo(lista):
     nombres = []
-    ruta = input("Escriba la ruta del archivo a leer: ")
-    archivo = open(ruta, 'r')
-    lineas = archivo.readlines()
-
-    for i in lineas:
-        i = i.split(";")
-        count = 1
+    archivo = elegirArchivo()
+    if archivo != None:
+        fichero = open(archivo, 'r')
+    for linea in fichero:
+        separador = linea.split(";")
         tmp_nombre = None
         tmp_actores = None
         tmp_anio = None
         tmp_genero = None
-        for j in i:
-            if count == 1:
-                tmp_nombre = j
-            elif count == 2:
-                j = j.split(",")
-                tmp_actores = j
-            elif count == 3:
-                tmp_anio = j
-            elif count == 4:
-                tmp_genero = j
-            count += 1
+        for i in range(len(separador)):
+            if i == 0:
+                tmp_nombre = separador[i].strip()
+            elif i == 1:
+                tmp_actores = separador[i].strip()
+            elif i == 2:
+                tmp_anio = separador[i].strip()
+            elif i == 3:
+                tmp_genero = separador[i].strip()
 
         if tmp_nombre not in nombres:
             peli = peliculas(tmp_nombre, tmp_actores, tmp_anio, tmp_genero)
@@ -43,7 +50,8 @@ def mostrarNombres(registro_peliculas):
         input('Ingrese el numero de la pelicula donde desea ver los actores: ')) - 1
 
     actor = registro_peliculas[opcion_peli].actores
-    print('Los actores de la película seleccionada son: %s' % ','.join(actor))
+    print("Actores de {0}: {1}".format(
+        registro_peliculas[opcion_peli].nombre, actor))
 
 
 def gestionarPeliculas():
@@ -62,9 +70,65 @@ def gestionarPeliculas():
                 break
             elif option == "b":
                 mostrarNombres(ListaPeliculas)
+                gestionarPeliculas()
                 break
             elif option == "c":
                 menuPrincipal()
+                break
+            else:
+                print("Opcion incorrecta")
+        except ValueError:
+            print("Opcion incorrecta")
+    exit
+
+
+def buscar_actor(lista_peliculas, actor):
+    peliculas_con_actor = []
+    for pelicula in lista_peliculas:
+        if actor.upper() in pelicula.actores.upper():
+            peliculas_con_actor.append(pelicula.nombre)
+    if len(peliculas_con_actor) == 0:
+        print("El actor", actor, "no se encuentra en ninguna pelicula.")
+    else:
+        print("El actor", actor, "aparece en las siguientes peliculas:")
+        for pelicula in peliculas_con_actor:
+            print("-", pelicula)
+
+
+def buscar_anio(lista_peliculas, anio):
+    filtrado_anio = []
+    for pelicula in lista_peliculas:
+        if pelicula.anio == anio:
+            filtrado_anio.append([pelicula.nombre, pelicula.genero])
+    if filtrado_anio == []:
+        print('No existen peliculas')
+    else:
+        print('Las peliculas del', anio, 'son: ')
+        for pelicula in filtrado_anio:
+            print("-", pelicula)
+
+
+def filtrado():
+    print("""===========FILTRADO========
+        a. Filtrado por actor
+        b. Filtrado por año
+        c. Filtrado por genero
+========================================""")
+    while True:
+        try:
+            option = input("Ingrese una opcion: ")
+            if option == "a":
+                nomActor = input('Ingrese el nombre del actor: ')
+                buscar_actor(ListaPeliculas, nomActor)
+                filtrado()
+                break
+            elif option == "b":
+                opcAnio = input("Ingrese el año para ver las peliculas: ")
+                buscar_anio(ListaPeliculas, opcAnio)
+                filtrado()
+                break
+            elif option == "c":
+
                 break
             else:
                 print("Opcion incorrecta")
@@ -95,7 +159,7 @@ def menuPrincipal():
                 gestionarPeliculas()
                 break
             elif option == 3:
-                print('op3')
+                filtrado()
                 break
             elif option == 4:
                 print('op4')
