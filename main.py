@@ -55,24 +55,32 @@ def mostrarNombres(registro_peliculas):
 
 
 def gestionarPeliculas():
-    print("""===========GESTION PELICULAS========
+    print("""\n===========GESTION PELICULAS====================\n
         a. Mostrar Peliculas 
         b. Mostrar actores
         c. Regresar al menu principal
-        ======================================""")
+\n================================================\n""")
     while True:
         try:
             option = input("Ingrese una opcion: ")
             if option == "a":
-                for i in ListaPeliculas:
-                    i.mostrar_infopeli()
+                if ListaPeliculas == []:
+                    print(
+                        '\n****No tiene ninguna pelicula registrada. Cargue un archivo para mostrar el listado de peliculas.****')
+                else:
+                    for i in ListaPeliculas:
+                        i.mostrar_infopeli()
                 gestionarPeliculas()
                 break
             elif option == "b":
-                mostrarNombres(ListaPeliculas)
+                if ListaPeliculas == []:
+                    print(
+                        '\n****No tiene ninguna pelicula registrada. Cargue un archivo para mostrar el listado de actores.****')
+                else:
+                    mostrarNombres(ListaPeliculas)
                 gestionarPeliculas()
                 break
-            elif option == "c":
+            elif option == 'c':
                 menuPrincipal()
                 break
             else:
@@ -122,28 +130,44 @@ def buscar_genero(lista_peliculas, genero):
 
 
 def filtrado():
-    print("""===========FILTRADO========
+    print("""\n===================FILTRADO=====================\n
         a. Filtrado por actor
         b. Filtrado por año
         c. Filtrado por genero
-========================================""")
+        d. Regresar al menu principal
+\n================================================""")
     while True:
         try:
             option = input("Ingrese una opcion: ")
             if option == "a":
-                nomActor = input('Ingrese el nombre del actor: ')
-                buscar_actor(ListaPeliculas, nomActor)
+                if ListaPeliculas == []:
+                    print(
+                        '\n****No tiene ninguna pelicula registrada. Cargue un archivo para filtrar por actor.****')
+                else:
+                    nomActor = input('Ingrese el nombre del actor: ')
+                    buscar_actor(ListaPeliculas, nomActor)
                 filtrado()
                 break
             elif option == "b":
-                opcAnio = input("Ingrese el año para ver las peliculas: ")
-                buscar_anio(ListaPeliculas, opcAnio)
+                if ListaPeliculas == []:
+                    print(
+                        '\n****No tiene ninguna pelicula registrada. Cargue un archivo para filtrar por año.****')
+                else:
+                    opcAnio = input("Ingrese el año para ver las peliculas: ")
+                    buscar_anio(ListaPeliculas, opcAnio)
                 filtrado()
                 break
             elif option == "c":
-                opcGenero = input("Ingrese el genero de la pelicula: ")
-                buscar_genero(ListaPeliculas, opcGenero)
+                if ListaPeliculas == []:
+                    print(
+                        '\n****No tiene ninguna pelicula registrada. Cargue un archivo para filtrar por genero.****')
+                else:
+                    opcGenero = input("Ingrese el genero de la pelicula: ")
+                    buscar_genero(ListaPeliculas, opcGenero)
                 filtrado()
+                break
+            elif option == 'd':
+                menuPrincipal()
                 break
             else:
                 print("Opcion incorrecta")
@@ -153,21 +177,22 @@ def filtrado():
 
 
 def menuPrincipal():
-    print("""===========MENU PRINCIPAL=============
+    print("""\n================MENU PRINCIPAL===================\n
         1.- Cargar Archivo de entrada
         2.- Gestionar peliculas
         3.- Filtrado
         4.- Grafica
         0.- Salir
-        =========================================""")
+\n================================================\n""")
     while True:
         try:
             option = int(input("Ingrese una opcion: "))
             if option == 1:
-                print('========Carga de Archivo========')
+                print('\n============CARGA DE ARCHIVO==============\n')
                 cargarArchivo(ListaPeliculas)
-                print("CARGO EXITOSAMENTE\n")
-                input('Presione enter para continuar...')
+                print(
+                    "\n********************ARCHIVO CARGADO EXITOSAMENTE*****************\n")
+                input('\nPresione enter para continuar...')
                 menuPrincipal()
                 break
             elif option == 2:
@@ -177,21 +202,20 @@ def menuPrincipal():
                 filtrado()
                 break
             elif option == 4:
-                print('op4')
+                print('GRAFICA')
                 break
             elif option == 0:
                 break
             else:
                 print("Opcion incorrecta")
-                menuPrincipal()
         except ValueError:
             print("Opcion incorrecta")
     exit
 
 
-print("""============= LENGUAJES FORMALES DE PROGRAMACION B- =================
+print("""\n============= LENGUAJES FORMALES DE PROGRAMACION B- ====================
                         201212891
                     Edgar Rolando Ramirez Lopez
-    ======================================================================""")
-input('      Presione cualquier tecla para continuar...       ')
+========================================================================\n""")
+input('\n      Presione cualquier tecla para continuar...       ')
 menuPrincipal()
