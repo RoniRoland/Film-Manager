@@ -2,23 +2,30 @@ from Peliculas import *
 import os
 ListaPeliculas = []
 
+# Funcion que verifica si el archivo existe o no, se utilizo la libreria OS
+
 
 def elegirArchivo():
     # Leemos la ruta/nombre del archivo a leer por consola
-    archivo = str(input("Introduzca el nombre/ruta del archivo a leer: "))
+    archivo = str(input("Escribe el nombre o ruta del archivo para cargar: "))
     while not os.path.isfile(archivo):  # Comprobamos que el archivo existe
         print("\nERROR: No se encontró el archivo\n")
         # Volvemos a leer la ruta/nombre del archivo
-        archivo = str(input("Introduzca el nombre/ruta del archivo a leer: "))
+        archivo = str(
+            input("Escribe el nombre o ruta del archivo para cargar: "))
     else:
         return archivo  # Si el archivo existe, devuelve la ruta/nombre
+
+# Funcion que carga el archivo a la ListaPeliculas
 
 
 def cargarArchivo(lista):
     nombres = []
     archivo = elegirArchivo()
+    # Se verifica si el archivo no esta vacio para que se prosiga con la lectura
     if archivo != None:
         fichero = open(archivo, 'r')
+    #
     for linea in fichero:
         separador = linea.split(";")
         tmp_nombre = None
@@ -47,10 +54,10 @@ def mostrarNombres(registro_peliculas):
         num_pelis += 1
         print(num_pelis, ".", pelicula.nombre)
     opcion_peli = int(
-        input('Ingrese el numero de la pelicula donde desea ver los actores: ')) - 1
+        input('\nIngrese el numero de la pelicula donde desea ver los actores: ')) - 1
 
     actor = registro_peliculas[opcion_peli].actores
-    print("Actores de {0}: {1}".format(
+    print("\nActores de {0}: {1}".format(
         registro_peliculas[opcion_peli].nombre, actor))
 
 
@@ -63,11 +70,13 @@ def gestionarPeliculas():
     while True:
         try:
             option = input("Ingrese una opcion: ")
+            print('\n')
             if option == "a":
                 if ListaPeliculas == []:
                     print(
                         '\n****No tiene ninguna pelicula registrada. Cargue un archivo para mostrar el listado de peliculas.****')
                 else:
+                    print('===============LISTADO PELICULAS================\n')
                     for i in ListaPeliculas:
                         i.mostrar_infopeli()
                 gestionarPeliculas()
@@ -77,6 +86,7 @@ def gestionarPeliculas():
                     print(
                         '\n****No tiene ninguna pelicula registrada. Cargue un archivo para mostrar el listado de actores.****')
                 else:
+                    print('================MOSTRAR ACTORES=================\n')
                     mostrarNombres(ListaPeliculas)
                 gestionarPeliculas()
                 break
@@ -96,9 +106,9 @@ def buscar_actor(lista_peliculas, actor):
         if actor.upper() in pelicula.actores.upper():
             peliculas_con_actor.append(pelicula.nombre)
     if len(peliculas_con_actor) == 0:
-        print("El actor", actor, "no se encuentra en ninguna pelicula.")
+        print("\nEl actor", actor, "no se encuentra en ninguna pelicula. \n")
     else:
-        print("El actor", actor, "aparece en las siguientes peliculas:")
+        print("\nEl actor", actor, "aparece en las siguientes peliculas: \n")
         for pelicula in peliculas_con_actor:
             print("-", pelicula)
 
@@ -109,9 +119,9 @@ def buscar_anio(lista_peliculas, anio):
         if pelicula.anio == anio:
             filtrado_anio.append([pelicula.nombre, pelicula.genero])
     if filtrado_anio == []:
-        print('No existen peliculas')
+        print('\nNo hay peliculas en ese año.\n')
     else:
-        print('Las peliculas del', anio, 'son: ')
+        print('\nLas peliculas del', anio, 'son: \n')
         for pelicula in filtrado_anio:
             print("-", pelicula)
 
@@ -122,9 +132,9 @@ def buscar_genero(lista_peliculas, genero):
         if genero.upper() in pelicula.genero.upper():
             peliculas_con_genero.append(pelicula.nombre)
     if len(peliculas_con_genero) == 0:
-        print("El genero", genero, "no se encuentra en ninguna pelicula.")
+        print("\nEl genero", genero, "no se encuentra en ninguna pelicula.\n")
     else:
-        print("El genero", genero, "aparece en las siguientes peliculas:")
+        print("\nEl genero", genero, "aparece en las siguientes peliculas:\n")
         for pelicula in peliculas_con_genero:
             print("-", pelicula)
 
@@ -138,12 +148,13 @@ def filtrado():
 \n================================================""")
     while True:
         try:
-            option = input("Ingrese una opcion: ")
+            option = input("\nIngrese una opcion: ")
             if option == "a":
                 if ListaPeliculas == []:
                     print(
                         '\n****No tiene ninguna pelicula registrada. Cargue un archivo para filtrar por actor.****')
                 else:
+                    print('\n===============FILTRAR POR ACTOR================\n')
                     nomActor = input('Ingrese el nombre del actor: ')
                     buscar_actor(ListaPeliculas, nomActor)
                 filtrado()
@@ -153,6 +164,7 @@ def filtrado():
                     print(
                         '\n****No tiene ninguna pelicula registrada. Cargue un archivo para filtrar por año.****')
                 else:
+                    print('\n================FILTRAR POR AÑO=================\n')
                     opcAnio = input("Ingrese el año para ver las peliculas: ")
                     buscar_anio(ListaPeliculas, opcAnio)
                 filtrado()
@@ -162,6 +174,7 @@ def filtrado():
                     print(
                         '\n****No tiene ninguna pelicula registrada. Cargue un archivo para filtrar por genero.****')
                 else:
+                    print('\n===============FILTRAR POR GENERO===============\n')
                     opcGenero = input("Ingrese el genero de la pelicula: ")
                     buscar_genero(ListaPeliculas, opcGenero)
                 filtrado()
