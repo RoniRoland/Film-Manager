@@ -25,7 +25,7 @@ def cargarArchivo(lista):
     # Se verifica si el archivo no esta vacio para que se prosiga con la lectura
     if archivo != None:
         fichero = open(archivo, 'r')
-    #
+    # en este for itera todo el archivo separando cada linea con el limitador ';' y con eso crea una lista de elementos de nuestra clase peliculas
     for linea in fichero:
         separador = linea.split(";")
         tmp_nombre = None
@@ -188,6 +188,59 @@ def filtrado():
             print("Opcion incorrecta")
     exit
 
+# Funcion que me guarda en una lista los actores de todas las peliculas sin repetir
+
+
+def mostrar_actores(list_peliculas):
+    actores = []
+    for pelicula in list_peliculas:
+        for actor in pelicula.actores.split(","):
+            if actor.strip() not in actores:
+                actores.append(actor.strip())
+    return actores
+
+# Funcion para mostrar grafica
+
+
+def grafica_peliculas(lista_peliculas):
+    # Aqui se guardan todos los actores
+    acts = mostrar_actores(lista_peliculas)
+    archivoDOT = open("imagen.dot", "w")
+    archivoDOT.write("digraph { \n")
+    archivoDOT.write('rankdir = LR \n')
+    archivoDOT.write(
+        'node[shape=record, fontname="Arial Black", fontsize=16] \n')
+    # recorre la lista para generar el nodo donde se guardara el nombre de la pelicula, año y genero
+    for pelicula in lista_peliculas:
+        archivoDOT.write(pelicula.nombre.replace(" ", "") +
+                         '[color=green, style=filled, label=<\n')
+        archivoDOT.write('<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">\n')
+        archivoDOT.write('<TR><TD BGCOLOR="red" COLSPAN="2">' +
+                         pelicula.nombre + '</TD></TR>\n')
+        archivoDOT.write('<TR><TD BGCOLOR="blue">' +
+                         pelicula.anio + '</TD> + <TD BGCOLOR="yellow">' +
+                         pelicula.genero + '</TD> </TR>\n')
+        archivoDOT.write('</TABLE>\n')
+        archivoDOT.write('>]')
+        '''archivoDOT.write(pelicula.nombre.replace(" ", "")+'[color=green, style=filled, label="' +
+                         pelicula.nombre + '|' + '{' + pelicula.anio + '|' + pelicula.genero + '}' + '"]\n')'''
+        # recorre los actores y se separa con ',' ya que en una pelicula puede haber mas de 1 actor, y se enlaza con el nodo anterior
+        for actor in pelicula.actores.split(","):
+            archivoDOT.write(pelicula.nombre.replace(
+                " ", "")+'->' + actor.strip().replace(
+                " ", "") + "\n")
+
+    # Se crean los nodos de actores
+    for a in acts:
+        archivoDOT.write(a.replace(" ", "")+'[color=yellow, style=filled, label="' +
+                         a + '"]\n')
+
+    archivoDOT.write("} \n")
+    archivoDOT.close()
+
+    os.system("dot.exe -Tpng imagen.dot -o  ReporteGrafico.png")
+    os.startfile("ReporteGrafico.png")
+
 
 def menuPrincipal():
     print("""\n================MENU PRINCIPAL===================\n
@@ -215,7 +268,8 @@ def menuPrincipal():
                 filtrado()
                 break
             elif option == 4:
-                print('GRAFICA')
+                grafica_peliculas(ListaPeliculas)
+                menuPrincipal()
                 break
             elif option == 0:
                 break
