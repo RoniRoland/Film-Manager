@@ -238,8 +238,8 @@ def grafica_peliculas(lista_peliculas):
     archivoDOT.write("} \n")
     archivoDOT.close()
 
-    os.system("dot.exe -Tpng imagen.dot -o  ReporteGrafico.png")
-    os.startfile("ReporteGrafico.png")
+    os.system("dot.exe -Tpng imagen.dot -o  GraficaPeliculas.png")
+    os.startfile("GraficaPeliculas.png")
 
 
 def menuPrincipal():
@@ -268,7 +268,10 @@ def menuPrincipal():
                 filtrado()
                 break
             elif option == 4:
-                grafica_peliculas(ListaPeliculas)
+                if ListaPeliculas == []:
+                    print("No hay datos por lo que no se puede graficar")
+                else:
+                    grafica_peliculas(ListaPeliculas)
                 menuPrincipal()
                 break
             elif option == 0:
