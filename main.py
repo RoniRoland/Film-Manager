@@ -269,7 +269,7 @@ def menuPrincipal():
                 break
             elif option == 4:
                 if ListaPeliculas == []:
-                    print("No hay datos por lo que no se puede graficar")
+                    print("\nNo hay datos por lo que no se puede graficar")
                 else:
                     grafica_peliculas(ListaPeliculas)
                 menuPrincipal()
