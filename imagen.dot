@@ -1,54 +1,54 @@
 digraph { 
 rankdir = LR 
 node[shape=record, fontname="Arial Black", fontsize=16] 
-TheAvengers[color=green, style=filled, label=<
+TheAvengers[color=blue, style=filled, label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-<TR><TD BGCOLOR="red" COLSPAN="2">The Avengers</TD></TR>
-<TR><TD BGCOLOR="blue">2012</TD> + <TD BGCOLOR="yellow">Ficcion</TD> </TR>
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">The Avengers</TD></TR>
+<TR><TD BGCOLOR="orange">2012</TD> + <TD BGCOLOR="green">Ficcion</TD> </TR>
 </TABLE>
 >]TheAvengers->RobertDowneyJr
 TheAvengers->ChrisEvans
 TheAvengers->ChrisHemsworth
-Spiderman[color=green, style=filled, label=<
+Spiderman[color=blue, style=filled, label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-<TR><TD BGCOLOR="red" COLSPAN="2">Spiderman</TD></TR>
-<TR><TD BGCOLOR="blue">2002</TD> + <TD BGCOLOR="yellow">Accion</TD> </TR>
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">Spiderman</TD></TR>
+<TR><TD BGCOLOR="orange">2002</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
 </TABLE>
 >]Spiderman->TobeyMaguire
 Spiderman->KirstenDunst
 Spiderman->WillemDafoe
-TheAmazingSpiderman[color=green, style=filled, label=<
+TheAmazingSpiderman[color=blue, style=filled, label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-<TR><TD BGCOLOR="red" COLSPAN="2">The Amazing Spiderman</TD></TR>
-<TR><TD BGCOLOR="blue">2012</TD> + <TD BGCOLOR="yellow">Accion</TD> </TR>
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">The Amazing Spiderman</TD></TR>
+<TR><TD BGCOLOR="orange">2012</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
 </TABLE>
 >]TheAmazingSpiderman->AndrewGarfield
 TheAmazingSpiderman->EmmaStone
-TheAmazingSpiderman2[color=green, style=filled, label=<
+TheAmazingSpiderman2[color=blue, style=filled, label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-<TR><TD BGCOLOR="red" COLSPAN="2">The Amazing Spiderman 2</TD></TR>
-<TR><TD BGCOLOR="blue">2014</TD> + <TD BGCOLOR="yellow">Accion</TD> </TR>
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">The Amazing Spiderman 2</TD></TR>
+<TR><TD BGCOLOR="orange">2014</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
 </TABLE>
 >]TheAmazingSpiderman2->AndrewGarfield
 TheAmazingSpiderman2->EmmaStone
-SpidermanHomecoming[color=green, style=filled, label=<
+SpidermanHomecoming[color=blue, style=filled, label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-<TR><TD BGCOLOR="red" COLSPAN="2">Spiderman Homecoming</TD></TR>
-<TR><TD BGCOLOR="blue">2017</TD> + <TD BGCOLOR="yellow">Accion</TD> </TR>
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">Spiderman Homecoming</TD></TR>
+<TR><TD BGCOLOR="orange">2017</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
 </TABLE>
 >]SpidermanHomecoming->TomHolland
 SpidermanHomecoming->Zendaya
-AvengersInfinityWar[color=green, style=filled, label=<
+AvengersInfinityWar[color=blue, style=filled, label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-<TR><TD BGCOLOR="red" COLSPAN="2">Avengers Infinity War</TD></TR>
-<TR><TD BGCOLOR="blue">2018</TD> + <TD BGCOLOR="yellow">Accion</TD> </TR>
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">Avengers Infinity War</TD></TR>
+<TR><TD BGCOLOR="orange">2018</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
 </TABLE>
 >]AvengersInfinityWar->RobertDowneyJr
 AvengersInfinityWar->TomHolland
-TheAmazingSpiderman3[color=green, style=filled, label=<
+TheAmazingSpiderman3[color=blue, style=filled, label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
-<TR><TD BGCOLOR="red" COLSPAN="2">The Amazing Spiderman 3</TD></TR>
-<TR><TD BGCOLOR="blue">2014</TD> + <TD BGCOLOR="yellow">Accion</TD> </TR>
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">The Amazing Spiderman 3</TD></TR>
+<TR><TD BGCOLOR="orange">2014</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
 </TABLE>
 >]TheAmazingSpiderman3->AndrewGarfield
 TheAmazingSpiderman3->EmmaStone

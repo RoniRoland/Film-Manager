@@ -32,6 +32,7 @@ def cargarArchivo(lista):
         tmp_actores = None
         tmp_anio = None
         tmp_genero = None
+        # recorre todos los elementos de la lista que se separo con ';' en este caso el rango es de 4, cuando i=0 guardamos el valor en tmp_nombre y asi con todas las variables temp
         for i in range(len(separador)):
             if i == 0:
                 tmp_nombre = separador[i].strip()
@@ -41,24 +42,30 @@ def cargarArchivo(lista):
                 tmp_anio = separador[i].strip()
             elif i == 3:
                 tmp_genero = separador[i].strip()
-
+        # comparamos si tmp_nombre se encuentra en la lista nombres, esta condicion funciona para verificar si hay alguna pelicula repetida, se compara con el nombre ya que es el unico elemento distinto
         if tmp_nombre not in nombres:
             peli = peliculas(tmp_nombre, tmp_actores, tmp_anio, tmp_genero)
             lista.append(peli)
             nombres.append(tmp_nombre)
 
+# Funcion para mostrar los actores que se encuentran en una pelicula
+
 
 def mostrarNombres(registro_peliculas):
+    # esta variable nos ayuda para enumerar el listado de peliculas
     num_pelis = 0
     for pelicula in registro_peliculas:
         num_pelis += 1
         print(num_pelis, ".", pelicula.nombre)
+    # aqui el usuario eligira alguna pelicula
     opcion_peli = int(
-        input('\nIngrese el numero de la pelicula donde desea ver los actores: ')) - 1
-
+        input('\nIngrese el numero de la pelicula donde desea ver los actores: ')) - 1  # se pone -1 al final ya que los subindices de una lista empieza en 0
+    # guardamos el dato del actor en esta variable, ponemos la lista con el subindice que se ingreso
     actor = registro_peliculas[opcion_peli].actores
     print("\nActores de {0}: {1}".format(
         registro_peliculas[opcion_peli].nombre, actor))
+
+# Funcion para el menu de gestion de peliculas
 
 
 def gestionarPeliculas():
@@ -67,11 +74,13 @@ def gestionarPeliculas():
         b. Mostrar actores
         c. Regresar al menu principal
 \n================================================\n""")
+    # repite hasta que el usuario eliga alguna de las opciones
     while True:
         try:
             option = input("Ingrese una opcion: ")
             print('\n')
             if option == "a":
+                # se verifica si la lista de las peliculas esta vacia o no, se copio esta condicion para todas las opciones
                 if ListaPeliculas == []:
                     print(
                         '\n****No tiene ninguna pelicula registrada. Cargue un archivo para mostrar el listado de peliculas.****')
@@ -99,23 +108,33 @@ def gestionarPeliculas():
             print("Opcion incorrecta")
     exit
 
+# Funcion para filtrar por actor
+
 
 def buscar_actor(lista_peliculas, actor):
+    # En esta lista guardamos las peliculas donde aparece el actor
     peliculas_con_actor = []
+    # la variable pelicula iterara toda la lista de peliculas, y se compara si el valor de actor que el usuario escribio con la lista de pelicuas existe en dicha lista. Para al final agregar la pelicula a la lista_con_actor.
     for pelicula in lista_peliculas:
         if actor.upper() in pelicula.actores.upper():
             peliculas_con_actor.append(pelicula.nombre)
+    # Si la longitud de la lista peliculas_con_actor es igual a 0, entonces el actor no participa en esa pelicula.
     if len(peliculas_con_actor) == 0:
         print("\nEl actor", actor, "no se encuentra en ninguna pelicula. \n")
     else:
+        # Se imprime las peliculas donde aparece el actor. Con una iteracion for en la lista peliculas_con_actor.
         print("\nEl actor", actor, "aparece en las siguientes peliculas: \n")
         for pelicula in peliculas_con_actor:
             print("-", pelicula)
 
+# Funcion para buscar peliculas por año
+
 
 def buscar_anio(lista_peliculas, anio):
+    # Es similar a la funcion buscar_actor pero en este caso se guardan 2 atributos a una lista, el nombre y genero
     filtrado_anio = []
     for pelicula in lista_peliculas:
+        # se compara el año ingresado por el usuario con los datos de la lista, y si lo encuentra se guarda en la lista filtrado_anio
         if pelicula.anio == anio:
             filtrado_anio.append([pelicula.nombre, pelicula.genero])
     if filtrado_anio == []:
@@ -125,8 +144,11 @@ def buscar_anio(lista_peliculas, anio):
         for pelicula in filtrado_anio:
             print("-", pelicula)
 
+# Funcion buscar peliculas por genero
+
 
 def buscar_genero(lista_peliculas, genero):
+    # Similar a las funciones anteriores, se guardara el nombre de las peliculas en la lista peliculas_con_genero.
     peliculas_con_genero = []
     for pelicula in lista_peliculas:
         if genero.upper() in pelicula.genero.upper():
@@ -137,6 +159,8 @@ def buscar_genero(lista_peliculas, genero):
         print("\nEl genero", genero, "aparece en las siguientes peliculas:\n")
         for pelicula in peliculas_con_genero:
             print("-", pelicula)
+
+# Funcion menu buscar por filtrado
 
 
 def filtrado():
@@ -213,17 +237,15 @@ def grafica_peliculas(lista_peliculas):
     # recorre la lista para generar el nodo donde se guardara el nombre de la pelicula, año y genero
     for pelicula in lista_peliculas:
         archivoDOT.write(pelicula.nombre.replace(" ", "") +
-                         '[color=green, style=filled, label=<\n')
+                         '[color=blue, style=filled, label=<\n')
         archivoDOT.write('<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">\n')
-        archivoDOT.write('<TR><TD BGCOLOR="red" COLSPAN="2">' +
+        archivoDOT.write('<TR><TD BGCOLOR="lightblue" COLSPAN="2">' +
                          pelicula.nombre + '</TD></TR>\n')
-        archivoDOT.write('<TR><TD BGCOLOR="blue">' +
-                         pelicula.anio + '</TD> + <TD BGCOLOR="yellow">' +
+        archivoDOT.write('<TR><TD BGCOLOR="orange">' +
+                         pelicula.anio + '</TD> + <TD BGCOLOR="green">' +
                          pelicula.genero + '</TD> </TR>\n')
         archivoDOT.write('</TABLE>\n')
         archivoDOT.write('>]')
-        '''archivoDOT.write(pelicula.nombre.replace(" ", "")+'[color=green, style=filled, label="' +
-                         pelicula.nombre + '|' + '{' + pelicula.anio + '|' + pelicula.genero + '}' + '"]\n')'''
         # recorre los actores y se separa con ',' ya que en una pelicula puede haber mas de 1 actor, y se enlaza con el nodo anterior
         for actor in pelicula.actores.split(","):
             archivoDOT.write(pelicula.nombre.replace(
@@ -238,8 +260,11 @@ def grafica_peliculas(lista_peliculas):
     archivoDOT.write("} \n")
     archivoDOT.close()
 
+    # se convierte la imagen.dot a un archivo png
     os.system("dot.exe -Tpng imagen.dot -o  GraficaPeliculas.png")
     os.startfile("GraficaPeliculas.png")
+
+# funcion donde muestra las opciones del menu principal
 
 
 def menuPrincipal():
