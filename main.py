@@ -42,10 +42,16 @@ def cargarArchivo(lista, nombres):
             elif i == 3:
                 tmp_genero = separador[i].strip()
         # comparamos si tmp_nombre se encuentra en la lista nombres, esta condicion funciona para verificar si hay alguna pelicula repetida, se compara con el nombre ya que es el unico elemento distinto
-        if tmp_nombre not in nombres:
-            peli = peliculas(tmp_nombre, tmp_actores, tmp_anio, tmp_genero)
-            lista.append(peli)
-            nombres.append(tmp_nombre)
+        if tmp_nombre in nombres:
+            for peli in lista:  # ciclo para buscar pelicula en la lista y removerla
+                if peli.nombre == tmp_nombre:
+                    lista.remove(peli)
+                    break
+        # se crea la lista objeto de peliculas
+        peli = peliculas(tmp_nombre, tmp_actores, tmp_anio, tmp_genero)
+        lista.append(peli)
+        nombres.append(tmp_nombre)
+
 
 # Funcion para mostrar los actores que se encuentran en una pelicula
 
