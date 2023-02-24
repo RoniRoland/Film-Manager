@@ -1,7 +1,7 @@
 from Peliculas import *
 import os
 ListaPeliculas = []
-
+nombres = []
 # Funcion que verifica si el archivo existe o no, se utilizo la libreria OS
 
 
@@ -19,8 +19,7 @@ def elegirArchivo():
 # Funcion que carga el archivo a la ListaPeliculas
 
 
-def cargarArchivo(lista):
-    nombres = []
+def cargarArchivo(lista, nombres):
     archivo = elegirArchivo()
     # Se verifica si el archivo no esta vacio para que se prosiga con la lectura
     if archivo != None:
@@ -280,7 +279,7 @@ def menuPrincipal():
             option = int(input("Ingrese una opcion: "))
             if option == 1:
                 print('\n============CARGA DE ARCHIVO==============\n')
-                cargarArchivo(ListaPeliculas)
+                cargarArchivo(ListaPeliculas, nombres)
                 print(
                     "\n********************ARCHIVO CARGADO EXITOSAMENTE*****************\n")
                 input('\nPresione enter para continuar...')

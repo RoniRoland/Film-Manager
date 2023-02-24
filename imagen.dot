@@ -52,6 +52,57 @@ TheAmazingSpiderman3[color=blue, style=filled, label=<
 </TABLE>
 >]TheAmazingSpiderman3->AndrewGarfield
 TheAmazingSpiderman3->EmmaStone
+TheAvengers5[color=blue, style=filled, label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">The Avengers 5</TD></TR>
+<TR><TD BGCOLOR="orange">2012</TD> + <TD BGCOLOR="green">Ficcion</TD> </TR>
+</TABLE>
+>]TheAvengers5->RobertDowneyJr
+TheAvengers5->ChrisEvans
+TheAvengers5->ChrisHemsworth
+Spiderman5[color=blue, style=filled, label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">Spiderman 5</TD></TR>
+<TR><TD BGCOLOR="orange">2002</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
+</TABLE>
+>]Spiderman5->TobeyMaguire
+Spiderman5->KirstenDunst
+Spiderman5->WillemDafoe
+TheAmazingSpiderman5[color=blue, style=filled, label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">The Amazing Spiderman 5</TD></TR>
+<TR><TD BGCOLOR="orange">2012</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
+</TABLE>
+>]TheAmazingSpiderman5->AndrewGarfield
+TheAmazingSpiderman5->EmmaStone
+TheAmazingSpiderman8[color=blue, style=filled, label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">The Amazing Spiderman 8</TD></TR>
+<TR><TD BGCOLOR="orange">2014</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
+</TABLE>
+>]TheAmazingSpiderman8->AndrewGarfield
+TheAmazingSpiderman8->EmmaStone
+SpidermanHomecoming9[color=blue, style=filled, label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">Spiderman Homecoming 9</TD></TR>
+<TR><TD BGCOLOR="orange">2017</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
+</TABLE>
+>]SpidermanHomecoming9->TomHolland
+SpidermanHomecoming9->Zendaya
+AvengersInfinityWar9[color=blue, style=filled, label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">Avengers Infinity War 9</TD></TR>
+<TR><TD BGCOLOR="orange">2018</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
+</TABLE>
+>]AvengersInfinityWar9->RobertDowneyJr
+AvengersInfinityWar9->TomHolland
+TheAmazingSpiderman33[color=blue, style=filled, label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+<TR><TD BGCOLOR="lightblue" COLSPAN="2">The Amazing Spiderman 33</TD></TR>
+<TR><TD BGCOLOR="orange">2014</TD> + <TD BGCOLOR="green">Accion</TD> </TR>
+</TABLE>
+>]TheAmazingSpiderman33->AndrewGarfield
+TheAmazingSpiderman33->EmmaStone
 RobertDowneyJr[color=yellow, style=filled, label="Robert Downey Jr"]
 ChrisEvans[color=yellow, style=filled, label="Chris Evans"]
 ChrisHemsworth[color=yellow, style=filled, label="Chris Hemsworth"]
